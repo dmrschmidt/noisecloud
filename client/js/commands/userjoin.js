@@ -35,4 +35,4 @@ _extend(UserJoinCommand, Command, {
 	}
 	
 });
-Yana.registerCommand(AddUserCommand);
+Yana.registerCommand(UserJoinCommand);

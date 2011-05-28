@@ -9,7 +9,10 @@ server = http.createServer(function(req, res){
 	
 	fs.readFile(__dirname + path, function(err, data){
 		if (err) { send404(console, err, res); return };
-		res.writeHead(200, {'Content-Type': 'text/html'})
+		var contentType = 'text/html';
+		if(path.indexOf(".js")==path.length-3) contentType = "application/javascript";
+		if(path.indexOf(".css")==path.length-4) contentType = "text/css";
+		res.writeHead(200, {'Content-Type': contentType});
 		res.write(data, 'utf8');
 		res.end();
 	});
@@ -35,9 +38,7 @@ socket.on('connection', function(client){
 	// new client is here, send the command stack
 	console.log('new user ' + client.sessionId + ' joined');
 	
-	client.send(create_message('command', 'full_stack',
-		{ 'command_stack': command_stack }
-	));
+	client.send(command_stack);
 	
 	client.on('message', function(message){ process_message(client, message) })
 	client.on('disconnect', function(){

@@ -17,6 +17,7 @@ var Yana = function() {
 	this.socket.on('disconnect', function(){	alert("connection lost.") });
 	
 	$("body").trigger("yana.ready");
+	this._ready = true;
 };
 
 Yana._commands = {};
@@ -26,11 +27,13 @@ Yana.registerCommand = function(command) {
 
 Yana.prototype = {
 	
-	_initalized: false,
+	_ready: false,
 	
 	init: function() {
 		
 		this.users = {};
+		
+		
 		
 		// setup event handlers for commands
 		for(key in Yana._commands) {
@@ -38,13 +41,19 @@ Yana.prototype = {
 		}
 	},
 	
+	getUser: function() {
+		return this.users[this.username];
+	},
+	
 	ready: function(callback) {
-		if(this._initialized) callback();
+		if(this._ready) callback();
 		else $("body").bind("yana.ready", callback);
 	},
 	
 	join: function(username) {
 		this.execute(new UserJoinCommand({username: username}));
+		this.username = username;
+		$("body").trigger("yana.joined");
 	},
 	
 	execute: function(command) {
@@ -53,13 +62,15 @@ Yana.prototype = {
 	},
 	
 	propagate: function(jsonObject) {
+		jsonObject.user = this.username;
 		this.socket.send(jsonObject);
 	},
 	
 	processMessage: function(jsonObject) {
+		console.log(jsonObject);
 		if(jsonObject.type==="command") {
-			var commandClass = Yana._commands[commandJson.name];
-			var command = new commandClass(commandJson.params);
+			var commandClass = Yana._commands[jsonObject.name];
+			var command = new commandClass(jsonObject.params);
 			command.execute(true);
 		}
 	}
@@ -69,7 +80,7 @@ Yana.prototype = {
 
 var User = function(username) {
 	this.username = username;
-	this.element = $('<div class="userspace"><div class="username">' + username + '</div></div>').appendTo("body");
+	this.element = $('<div class="userspace"><div class="username">' + username + '</div></div>').appendTo("#space");
 	$("body").trigger("yana.user.created");
 } 
 

@@ -5,14 +5,32 @@
 		<title></title>
 		
 		<script type="text/javascript" src="/js/jquery.js"></script>
-		<script type="text/javascript" src="/js/core.js"></script>
-		<script type="text/javascript" src="/js/commands/command.js"></script>
-		<script type="text/javascript" src="/js/commands/userjoin.js"></script>
+		<script type="text/javascript" src="/js/jquery-ui.js"></script>
 		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 		
-		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		
+		<script type="text/javascript" src="/js/core.js"></script>
+		
+		<script type="text/javascript" src="/js/commands/command.js"></script>
+		<script type="text/javascript" src="/js/commands/userjoin.js"></script>
+		<script type="text/javascript" src="/js/commands/addpatch.js"></script>
+		
+		<script type="text/javascript" src="/js/patches/patch.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+		
 	</head>
 	<body>
+		
+		<div id="repository">
+			<div class="patch" data-type="patch1"><span class="name">Patch 1</span></div>
+			<div class="patch" data-type="patch2"><span class="name">Patch 2</span></div>
+			<div class="patch" data-type="patch3"><span class="name">Patch 3</span></div>
+		</div>
+		
+		<div id="space">
+			
+		</div>
 		
 		<div id="login_dialog">
 			<div class="mask"></div>
