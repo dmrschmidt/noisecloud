@@ -27,7 +27,7 @@ Yana.registerCommand = function(command) {
 
 Yana._patches = {};
 Yana.registerPatch = function(patch) {
-	Yana._patches[patch.prototype.name] = command;
+	Yana._patches[patch.prototype.name] = patch;
 };
 
 Yana.prototype = {
