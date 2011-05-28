@@ -7,30 +7,61 @@
 		<script type="text/javascript">
 			window.AudioContext = window.webkitAudioContext;
 			
+			var currentSample = 0;
+			var bufferSize = 1024;
+			var frequency = 128;
+			
 			var context = new AudioContext();
-			var context = new AudioContext();
-			var node = context.createJavaScriptNode(1024, 1, 1);
-			var p = 0;
-
-			node.onaudioprocess = function (e) {
-			    var data = e.outputBuffer.getChannelData(0);
-			    for (var i = 0; i < data.length; i++) {
-			        data[i] = Math.sin(p++);
-			    }
+			var node_a = context.createJavaScriptNode(bufferSize, 1, 1);
+			var node_b = context.createJavaScriptNode(bufferSize, 1, 1);
+			
+			// onaudioprocess event handler is called bufferSize times
+			node_a.onaudioprocess = function (e) {
+					var p = 0;
+					var data = e.outputBuffer.getChannelData(0);
+					for (var i = 0; i < data.length; i++) {
+							data[i] = Math.sin(frequency * Math.PI * (p++ / data.length));
+					}
 			};
-
+			
+			node_b.onaudioprocess = function (e) {
+					var p = 0;
+					console.log('channels: ' + currentSample);
+					var input  = e.inputBuffer.getChannelData(0);
+					var output = e.outputBuffer.getChannelData(0);
+					for (var i = 0; i < output.length; i++) {
+						currentSample++;
+						if(currentSample % 44100 < 22025)
+							output[i] = input[i] + Math.sin(frequency/3 * Math.PI * (p++ / output.length));
+						else
+							output[i] = input[i];
+					}
+			};
+			
 			function play() {
-			    node.connect(context.destination);
+					node_a.connect(node_b);
+					node_b.connect(context.destination);
 			}
-
+			
 			function pause() {
-			    node.disconnect();
+					node_b.disconnect();
 			}
+		
 		</script>
 		<!-- <link rel="stylesheet" type="text/css" href="css/style.css" /> -->
 	</head>
 	<body>
 		<input type="button" value="play" onclick="play()" />
 		<input type="button" value="stop" onclick="pause()" />
+		<input type="range" min="0" max="1024" value="128" step="5" onchange="showValue(this.value)" /><br />
+		<span id="range">128</span>
+		<span id="value"></span>
+		<script type="text/javascript">
+		function showValue(newValue)
+		{
+			frequency = newValue;
+			document.getElementById("range").innerHTML=newValue;
+		}
+		</script>
 	</body>
 </html>
