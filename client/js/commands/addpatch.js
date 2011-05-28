@@ -7,13 +7,13 @@ AddPatchCommand.setup = function() {
 		
 		$("#repository .patch").mousedown(function() {
 
-			var patchType = $(this).data("type");
+			var patchName = $(this).data("name");
 			var userEl = yana.getUser().element;
 
 			$('<div id="newpatch"></div>').appendTo("body");
 			$("#repository, #space")
 				.mousemove(function(ev) {
-					$("#newpatch").css({"left": ev.pageX, "top": ev.pageY });
+					$("#newpatch").css({"left": ev.pageX+10, "top": ev.pageY+10 });
 				})
 				.mouseup(function() {
 					$("#newpatch").remove();
@@ -25,7 +25,7 @@ AddPatchCommand.setup = function() {
 					var command = new AddPatchCommand({
 						x: ev.pageX - $(userEl).offset().x,
 						y: ev.pageX - $(userEl).offset().y,
-						type: patchType
+						name: patchName
 					});
 					yana.execute(command);
 				});
@@ -42,6 +42,7 @@ _extend(AddPatchCommand, Command, {
 	
 	execute: function(externalCommand) {
 		
+		var patch = yana.patches[params.name];
 		
 		
 	}
