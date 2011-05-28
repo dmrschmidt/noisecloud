@@ -19,11 +19,11 @@ server.listen(80);
 
 // socket.io, I choose you
 var socket        = io.listen(server),
-    command_stack = [{'a':'b'}];
+    command_stack = [];
 
 socket.on('connection', function(client){
   // new client is here, send the command stack
-  client.send({ command_stack: command_stack });
+  client.send({ 'command_stack': command_stack });
   // client.broadcast({ 'announcement': client.sessionId + ' connected' });
   client.on('message', function(message){ console.log('jap') })
   client.on('disconnect', function(){  })
