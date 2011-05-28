@@ -1,19 +1,27 @@
 var http = require('http'), 
     io = require('socket.io'),
+    url = require('url'),
     fs = require('fs');
 
 server = http.createServer(function(req, res){
-    // your normal server code
-    // res.writeHead(200, {'Content-Type': 'text/html'});
-    // res.end('<h1>Hello world</h1>');
-    
-    fs.readFile(__dirname + '/client.html', function(err, data){
-      if (err) console.log('error');
-      res.writeHead(200, {'Content-Type': 'text/html'})
-      res.write(data, 'utf8');
-      res.end();
-    });
+  var path = url.parse(req.url).pathname;
+  if(path == '/') path = '/index.html';
+  
+  fs.readFile(__dirname + path, function(err, data){
+    if (err) { send404(console, err, res); return };
+    res.writeHead(200, {'Content-Type': 'text/html'})
+    res.write(data, 'utf8');
+    res.end();
+  });
 });
+
+send404 = function(console, err, res){
+  console.log('file error ' + err);
+  res.writeHead(404);
+  res.write('404');
+  res.end();
+};
+
 
 server.listen(80);
 
