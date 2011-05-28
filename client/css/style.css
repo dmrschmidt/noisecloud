@@ -32,13 +32,18 @@ body {
 	cursor: pointer;
 }
 
-
-#newpatch {
+#dragicon {
 	width: 20px;
 	height: 20px;
 	background: #FFFFFF;
 	border: 1px solid green;
 	position: absolute;
+}
+
+.userspace {
+	width: 400px;
+	height: 200px;
+	border: 2px solid;
 }
 
 #login_dialog {

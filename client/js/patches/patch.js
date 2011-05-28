@@ -1,7 +1,9 @@
-var Patch = function(params) {
-	this.params = params;
+var Patch = function(id) {
+	this.id = id;
+	this.element = $('<div class="patch" id="' + this.id +'"></div');
 	this.init();
 };
+
 Patch.prototype = {
 	
 	bufferSize: 1024,
@@ -21,21 +23,21 @@ Patch.prototype = {
 	},
 	
 	getElement: function() {
-		return $('<div class="patch"></div');
+		return this.element;
 	}
 	
 }
 
-var SamplePatch = function(params) {
-	SamplePatch.superclass.constructor.call(this, params);
+var SamplePatch = function(id) {
+	SamplePatch.superclass.constructor.call(this, id); 
 };
 _extend(SamplePatch, Patch, {
 	
 	name: "sample_patch",
+	title: "Sample",
 	
 	processAudio: function(e) {
 		// put concrete audio implementation here
-	},
-	
+	}
 });
 Yana.registerPatch(SamplePatch);
