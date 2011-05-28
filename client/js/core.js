@@ -33,6 +33,9 @@ Yana.prototype = {
 		
 		this.users = {};
 		
+		// set up the AudioContext
+		window.AudioContext = window.webkitAudioContext;
+		this.audioContext = new AudioContext();
 		
 		
 		// setup event handlers for commands
