@@ -2,7 +2,7 @@ var yana;
 $(document).ready(function() {
 	
 	yana = new Yana();
-	
+
 });
 
 var Yana = function() {
