@@ -45,7 +45,7 @@ $(document).ready(function() {
 		e.preventDefault();
 		var username = $("#login_user").val();
 		$("#login_dialog").hide("slow");
-		yana.announce({ type: "announcement", name: "user_join", params: {username: username} });
+		yana.propagate({ type: "announcement", name: "user_join", params: {username: username} });
 		yana.ready(function() {
 			yana.join(username);
 		});

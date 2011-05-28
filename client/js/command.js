@@ -18,7 +18,7 @@ var AddUserCommand = function(params) {
 };
 _extend(AddUserCommand, Command, {
 	
-	name: "add_user";
+	name: "add_user",
 	
 	execute: function() {
 		
