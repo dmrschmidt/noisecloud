@@ -12,6 +12,8 @@ Patch.prototype = {
 	init: function() {
 		this.node = yana.audioContext.createJavaScriptNode(this.bufferSize, 1, 1);
 		this.node.onaudioprocess = $.proxy(this.processAudio, this);
+		// temporary for playing
+		this.connect(yana.audioContext.destination);
 	},
 	
 	connect: function(nodeOrDestination) {
