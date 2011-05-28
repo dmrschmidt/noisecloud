@@ -14,7 +14,7 @@ var Yana = function() {
 	this.socket.connect();
 	this.socket.on('connect', function(){});
 	this.socket.on('message', $.proxy(this.processMessage, this));
-	this.socket.on('disconnect', function(){	alert("connection lost.") });
+	this.socket.on('disconnect', function(){ alert("connection lost.") });
 	
 	$("body").trigger("yana.ready");
 	this._ready = true;
@@ -25,6 +25,11 @@ Yana.registerCommand = function(command) {
 	Yana._commands[command.prototype.name] = command;
 };
 
+Yana._patches = {};
+Yana.registerPatch = function(patch) {
+	Yana._patches[patch.prototype.name] = command;
+};
+
 Yana.prototype = {
 	
 	_ready: false,
@@ -33,7 +38,7 @@ Yana.prototype = {
 		
 		this.users = {};
 		
-		
+		$("body").disableSelection();
 		
 		// setup event handlers for commands
 		for(key in Yana._commands) {
