@@ -4,6 +4,7 @@ var SinePatch = function(params) {
 _extend(SinePatch, Patch, {
 	
 	name: "sine_patch",
+	title: "Sine",
 	frequency: 128,
 	
 	processAudio: function(e) {

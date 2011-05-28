@@ -4,15 +4,17 @@ var DrumPatch = function(params) {
 _extend(DrumPatch, Patch, {
 	
 	name: "drum_patch",
-	frequency: 64,
+	title: "Drum",
+	frequency: 1,
 	currentSample: 0,
+	samplingRate: 44100,
 	
 	processAudio: function(e) {
 		var p = 0;
 		var output = e.outputBuffer.getChannelData(0);
 		for (var i = 0; i < output.length; i++) {
 			this.currentSample++;
-			if(this.currentSample % 44100 < 22025)
+			if(this.currentSample % this.samplingRate < 22025)
 				output[i] = Math.sin(this.frequency * Math.PI * (p++ / output.length));
 			else
 				output[i] = 0;
