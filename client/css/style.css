@@ -1,0 +1,24 @@
+html, body {
+	height: 100%;
+}
+
+body {
+	background-color: #333333;
+}
+
+#login_dialog {
+	width: 100%; height: 100%;
+}
+
+#login_dialog .mask {
+	width: 100%; height: 100%;
+	background: #000000;
+	opacity:0.5;
+}
+
+#login_dialog .content {
+	width: 400px;
+	height: 200px;
+	background: white;
+	padding: 10px;
+}
