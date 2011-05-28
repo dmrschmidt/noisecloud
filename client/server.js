@@ -43,17 +43,18 @@ socket.on('connection', function(client){
 	client.on('message', function(message){ process_message(client, message) })
 	client.on('disconnect', function(){
 		username = session_names[client.sessionId];
-		create_message('command', 'user_leave',
+		create_message('command', 'user_leave', username,
 			{ 'username': username });
 		console.log(username + ' (' + client.sessionId + ') disconnected');
 	})
 });
 
 
-function create_message(type, name, params) {
+function create_message(type, name, user, params) {
 	return {
 		'type': type,
 		'name': name,
+		'user': user,
 		'params': params
 	}
 }

@@ -1,5 +1,6 @@
 var UserJoinCommand = function(params) {
 	UserJoinCommand.superclass.constructor.call(this, params); 
+	
 };
 UserJoinCommand.setup = function() {
 	// enter user name

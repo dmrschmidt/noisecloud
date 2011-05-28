@@ -27,7 +27,11 @@ Yana.registerCommand = function(command) {
 
 Yana._patches = {};
 Yana.registerPatch = function(patch) {
-	Yana._patches[patch.prototype.name] = command;
+	Yana._patches[patch.prototype.name] = patch;
+	$(document).ready(function() {
+		$('<div class="patch" data-name="' + patch.prototype.name + '"><span class="name">' + patch.prototype.title +'</span></div>')
+			.appendTo("#repository");
+	});
 };
 
 Yana.prototype = {
@@ -56,8 +60,8 @@ Yana.prototype = {
 	},
 	
 	join: function(username) {
-		this.execute(new UserJoinCommand({username: username}));
 		this.username = username;
+		this.execute(new UserJoinCommand({username: username}));
 		$("body").trigger("yana.joined");
 	},
 	
@@ -75,7 +79,7 @@ Yana.prototype = {
 		console.log(jsonObject);
 		if(jsonObject.type==="command") {
 			var commandClass = Yana._commands[jsonObject.name];
-			var command = new commandClass(jsonObject.params);
+			var command = new commandClass(jsonObject.user, jsonObject.params);
 			command.execute(true);
 		}
 	}
@@ -86,7 +90,9 @@ Yana.prototype = {
 var User = function(username) {
 	this.username = username;
 	this.element = $('<div class="userspace"><div class="username">' + username + '</div></div>').appendTo("#space");
-	$("body").trigger("yana.user.created");
+	this.element.css("border-color", "#"+Math.floor(Math.random()*16777215).toString(16));
+	$("body").trigger("yana.user.created", this);
+	this.element.draggable();
 } 
 
 User.prototype = {

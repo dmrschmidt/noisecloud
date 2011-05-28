@@ -1,4 +1,5 @@
-var Command = function(params) {
+var Command = function(params, user) {
+	this.user = user || yana.username;
 	this.params = params;
 };
 Command.prototype = {
