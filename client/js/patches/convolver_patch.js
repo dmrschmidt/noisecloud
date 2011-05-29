@@ -39,8 +39,8 @@ ImpulseResponse.prototype.load = function(preset) {
 }
 
 var ConvolverPatch = function(id, params) {
-	ConvolverPatch.superclass.constructor.call(this, id, params);
 	this.params = {bufferId: 4};
+	ConvolverPatch.superclass.constructor.call(this, id, params);
 };
 
 ConvolverPatch.impulseResponses = [
