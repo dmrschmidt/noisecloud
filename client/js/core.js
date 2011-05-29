@@ -56,7 +56,7 @@ Yana.prototype = {
 		this.connectionsCtx = connectionsCanvas.getContext('2d');
 		this.wiringCtx = wiringCanvas.getContext('2d');
 		
-		
+		this.activePatches = {};
 		
 		// set up the AudioContext
 		window.AudioContext = window.webkitAudioContext;
@@ -97,7 +97,6 @@ Yana.prototype = {
 	},
 	
 	processMessage: function(jsonObject) {
-		console.log(jsonObject);
 		if(jsonObject.type==="command") {
 			var commandClass = Yana._commands[jsonObject.name];
 			var command = new commandClass(jsonObject.user, jsonObject.params);
@@ -112,12 +111,25 @@ var User = function(username) {
 	this.username = username;
 	this.element = $(
 		'<div class="userspace"><div class="handle"><span class="username">' + username + '</span></div>' +
-		'<div class="output input"></div>' +
+		'<div class="output" data-id="' + this.username + '_out"></div>' +
 		'</div>'
 	).appendTo("#space");
 	this.color = "#"+Math.floor(Math.random()*16777215).toString(16);
 	this.element.css("border-color", this.color);
 	this.element.find(".handle").css("background-color", this.color);
+	if(username==yana.username) 
+		this.element.addClass("ownspace");
+	else
+		this.element.append('<div class="mask"></div>');
+	
+/*	if(username==yana.username) {
+		this.outputPatch = new OutputPatch(this.username + "_out");
+		yana.activePatches[this.username + "_out"] = this.outputPatch;
+	} else {
+		this.outputPatch = new MergePatch(this.username + "_out");
+		yana.activePatches[this.username + "_out"] = this.outputPatch;
+	}*/
+	
 	$("body").trigger("yana.user.created", this);
 	this.element.draggable({handle: ".handle"});
 } 

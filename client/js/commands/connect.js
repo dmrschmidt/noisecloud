@@ -69,6 +69,8 @@ _extend(ConnectCommand, Command, {
 		yana.connectionsCtx.moveTo(start.x,start.y);
 		yana.connectionsCtx.bezierCurveTo(middleX,start.y,middleX,end.y,end.x,end.y);
 		yana.connectionsCtx.stroke();
+		
+		yana.activePatches[this.params.from].connect(yana.activePatches[this.params.to]);
 	}
 	
 });

@@ -56,6 +56,7 @@ _extend(AddPatchCommand, Command, {
 	
 	execute: function(externalCommand) {
 		var patch = new Yana._patches[this.params.name](this.params.id);
+		yana.activePatches[this.params.id] = patch;
 		var userEl = yana.users[this.user].element;
 		patch.getElement()
 			.appendTo(userEl)
