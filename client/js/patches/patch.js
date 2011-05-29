@@ -34,11 +34,6 @@ Patch.prototype = {
 		// implement in subclasses
 	},
 	
-	editableFields: function() {
-		// implement in subclasses
-		return [];
-	},
-	
 	reloadStatic: function() {
 		// implement if needed in subclasses for reload of static init assigns
 	},
@@ -65,12 +60,20 @@ Patch.prototype = {
 	},
 	
 	registerEvents: function() {
-		var self = this;
-		$('.ownspace #' + this.id).dblclick(function() {
-			$('#' + self.id).find('.controls').first().show('fast');
+		
+		$(this.getElement()).find(".handle").dblclick(function(ev) {
+			ev.stopPropagation();
+			$(this).parent().find(".controls").show("fast");
 		});
-		$('.ownspace #' + this.id + ' .close').click(function() {
-			$('#' + self.id).find('.controls').first().hide('fast');
+		$(this.getElement()).find(".close").click(function(ev) {
+			ev.stopPropagation();
+			$(this).parent().find(".controls").hide("fast");
+		});
+		$(this.getElement()).find(".controls input").keydown(function(ev) {
+			if(ev.keyCode == 13) {
+				$(this).blur();
+				$(this).parents(".patch").find(".controls").first().hide('fast');
+			}
 		});
 	},
 	
