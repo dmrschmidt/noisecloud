@@ -67,7 +67,7 @@ Patch.prototype = {
 		});
 		$(this.getElement()).find(".close").click(function(ev) {
 			ev.stopPropagation();
-			$(this).parent().find(".controls").hide("fast");
+			$(this).parent().hide("fast");
 		});
 		$(this.getElement()).find(".controls input").keydown(function(ev) {
 			if(ev.keyCode == 13) {
