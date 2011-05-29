@@ -7,9 +7,9 @@ _extend(OutputPatch, Patch, {
 	title: "Output",
 	
 	init: function() {
-		this.node = yana.audioContext.createGainNode();
-		OutputPatch.superclass.init.call(this);
 		
+		OutputPatch.superclass.init.call(this);
+		this.node = yana.audioContext.createGainNode();
 	},
 	
 	toggleOn: function() {

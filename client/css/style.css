@@ -115,6 +115,8 @@ body {
 	padding: 1px 2px;
 	font-weight: bold;
 	z-index: 3;
+	-webkit-border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 5px;
 }
 
 .userspace .mask {
