@@ -8,6 +8,7 @@ _extend(MixPatch, Patch, {
 	
 	// fake an actual mixer
 	init: function() {
+		MixPatch.superclass.init.call(this);
 		this.node = yana.audioContext.createGainNode();
 		this.node.gain.value = 1;
 	},

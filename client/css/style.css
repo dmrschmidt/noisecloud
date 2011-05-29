@@ -148,3 +148,17 @@ body {
 	border-radius: 5px;
 	z-index: 5;
 }
+
+.patch .controls {
+  position: absolute;
+  padding: 5px;
+  background-color: silver;
+  border-radius: 3px;
+}
+
+.patch .controls img.close {
+  position: absolute;
+  right: -16px;
+  top: -16px;
+  cursor: pointer;
+}

@@ -15,5 +15,10 @@ _extend(SinePatch, Patch, {
 		}
 	},
 	
+	editableFields: function() {
+		// implement in subclasses
+		return ['frequency'];
+	},
+	
 });
 Yana.registerPatch(SinePatch);

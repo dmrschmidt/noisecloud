@@ -7,6 +7,7 @@ _extend(OutputPatch, Patch, {
 	title: "Output",
 	
 	init: function() {
+		OutputPatch.superclass.init.call(this);
 		this.node = yana.audioContext.destination;
 	},
 	
