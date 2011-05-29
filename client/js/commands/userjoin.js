@@ -5,13 +5,18 @@ var UserJoinCommand = function(params, user) {
 UserJoinCommand.setup = function() {
 	$("#login_form").submit(function(e) {
 		e.preventDefault();
+		if($("#login_user").val().length==0) {
+			$("#login_user").effect("shake", { times:3 }, 30, function() {
+				$("#login_user").focus();
+			});
+		}
 	});
 	$("#login_form input").focus();
 	// enter user name
 	$("#login_user").keyup(function() {
 		if($(this).val().length>0)
 			$("#login_submit").removeAttr("disabled");
-		else 
+		else
 			$("#login_submit").attr("disabled", "disabled");
 	});
 	$("#login_submit").click(function(e) {
