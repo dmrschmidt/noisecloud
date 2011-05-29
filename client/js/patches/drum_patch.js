@@ -7,7 +7,6 @@ _extend(DrumPatch, Patch, {
 	title: "Drum",
 	frequency: 12,
 	currentSample: 0,
-	samplingRate: 44100,
 	beats: [1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0],
 	currentBeatCount: -1,
 	
