@@ -58,6 +58,7 @@ ConvolverPatch.impulseResponseLoaded = function(impulseResponse) {
 	if(ConvolverPatch.impulseResponseList.length == ConvolverPatch.impulseResponses.length) {
 		// enable the convolver only after load in the GUI
 		ConvolverPatch._loaded = true;
+		Yana.registerPatch(ConvolverPatch);
 	}
 };
 
@@ -87,4 +88,3 @@ _extend(ConvolverPatch, Patch, {
 	},
 	
 });
-Yana.registerPatch(ConvolverPatch);
