@@ -1,11 +1,11 @@
 var DelayPatch = function(id, params) {
 	DelayPatch.superclass.constructor.call(this, id, params);
+	this.params = {delayTime: 32.0};
 };
 _extend(DelayPatch, Patch, {
 	
 	name: "delay_patch",
 	title: "Delay",
-	params: {delayTime: 32.0},
 	
 	init: function() {
 		DelayPatch.superclass.init.call(this);

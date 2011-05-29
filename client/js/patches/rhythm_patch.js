@@ -1,5 +1,9 @@
 var RhythmPatch = function(id, params) {
 	RhythmPatch.superclass.constructor.call(this, id, params);
+	this.params = {
+		frequency: 12,
+		beats: [1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0],
+	};
 };
 _extend(RhythmPatch, Patch, {
 	
@@ -7,10 +11,6 @@ _extend(RhythmPatch, Patch, {
 	title: "Rhythm",
 	currentSample: 0,
 	currentBeatCount: -1,
-	params: {
-		frequency: 12,
-		beats: [1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0],
-	},
 	
 	processAudio: function(e) {
 		var p = 0;
