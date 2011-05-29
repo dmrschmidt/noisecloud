@@ -1,4 +1,4 @@
-var Patch = function(id) {
+var Patch = function(id, params) {
 	this.id = id;
 	this.element = $(
 		'<div id="' + this.id + '" class="patch input" data-id="' + this.id +'">' +
@@ -7,6 +7,7 @@ var Patch = function(id) {
 		'</div><div class="controls" style="display:none;"><img class="close" src="/img/close.png"></div></div></div>'
 	);
 	this.connectedNodes = new Array();
+	if(params) this.params = params;
 	this.init();
 };
 

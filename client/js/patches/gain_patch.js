@@ -1,16 +1,19 @@
-var GainPatch = function(params) {
-	GainPatch.superclass.constructor.call(this, params);
+var GainPatch = function(id, params) {
+	GainPatch.superclass.constructor.call(this, id, params);
 };
 _extend(GainPatch, Patch, {
 	
 	name: "gain_patch",
 	title: "Gain",
-	gain: 10,
+	
+	params: {
+		gain: 10
+	},
 	
 	init: function() {
 		GainPatch.superclass.init.call(this);
 		this.node = yana.audioContext.createGainNode();
-		this.node.gain.value = this.gain;
+		this.node.gain.value = this.params.gain;
 	},
 	
 	editableFields: function() {
