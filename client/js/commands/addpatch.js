@@ -14,6 +14,11 @@ AddPatchCommand.setup = function() {
 
 			var patchName = $(this).data("name");
 			var userEl = yana.getUser().element;
+			
+			var unbind = function() {
+				$(userEl).unbind("mouseup hover");
+				$("#repository, #space").unbind("mousemove mouseup");
+			};
 
 			$('<div id="dragicon"></div>').appendTo("body");
 			$("#repository, #space")
@@ -22,6 +27,7 @@ AddPatchCommand.setup = function() {
 				})
 				.mouseup(function() {
 					$("#dragicon").remove();
+					unbind();
 				});
 			$(userEl)
 				.hover(function() { $(this).toggleClass("allowed"); })
@@ -34,8 +40,10 @@ AddPatchCommand.setup = function() {
 						name: patchName
 					});
 					yana.execute(command);
+					unbind();
 				});
-
+				
+			
 
 		});
 		
@@ -47,12 +55,13 @@ _extend(AddPatchCommand, Command, {
 	name: "add_patch",
 	
 	execute: function(externalCommand) {
-		var patch = new Yana._patches[this.params.name]();
+		var patch = new Yana._patches[this.params.name](this.params.id);
 		var userEl = yana.users[this.user].element;
 		patch.getElement()
 			.appendTo(userEl)
 			.css({ left: this.params.x, top: this.params.y });
-		
+		if(this.user==yana.username)
+			patch.getElement().draggable({containment: userEl, handle: ".handle"});
 		$("body").trigger("yana.patch.added", patch);
 	}
 	
@@ -74,7 +83,7 @@ MovePatchCommand.setup = function() {
 				var command = new MovePatchCommand({
 					x: $(this).css("left"),
 					y: $(this).css("top"),
-					name: patchName
+					id: patch.id
 				});
 				yana.execute(command);
 			}

@@ -1,6 +1,8 @@
 var Patch = function(id) {
 	this.id = id;
-	this.element = $('<div class="patch" id="' + this.id +'"></div');
+	this.element = $(
+		'<div class="patch input" data-id="' + this.id +'"><div class="handle"></div><div class="output" data-id="' + this.id +'"></div></div>'
+	);
 	this.init();
 };
 
