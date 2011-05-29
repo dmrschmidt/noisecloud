@@ -39,9 +39,9 @@ Patch.prototype = {
 		return [];
 	},
 	
-	updateValue: function(name) {
-		var value_user = $('#'+this.id+' input.'+name).val();
-		if(value_user) eval('this.params.' + name + ' = ' + value_user + ';'); 
+	updateValue: function(name, value) {
+		if(value) eval('this.params.' + name + ' = ' + value + ';');
+		$("#" + this.id + " input."+name).val(value);
 	},
 	
 	getElement: function() {
@@ -66,9 +66,6 @@ Patch.prototype = {
 		});
 		$('#' + this.id + ' .close').click(function() {
 			$('#' + self.id).find('.controls').first().hide('fast');
-		});
-		$('#' + this.id + ' input').blur(function() {
-			self.updateValue($(this).attr('class'));
 		});
 	}
 	
