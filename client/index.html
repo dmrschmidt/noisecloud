@@ -14,6 +14,7 @@
 		<script type="text/javascript" src="/js/commands/command.js"></script>
 		<script type="text/javascript" src="/js/commands/userjoin.js"></script>
 		<script type="text/javascript" src="/js/commands/addpatch.js"></script>
+		<script type="text/javascript" src="/js/commands/connect.js"></script>
 		
 		<script type="text/javascript" src="/js/patches/patch.js"></script>
 		<script type="text/javascript" src="/js/patches/sine_patch.js"></script>
@@ -29,9 +30,11 @@
 		
 		<div id="repository">
 		</div>
-		
-		<div id="space">
-			
+		<div id="space-container">
+			<div id="space">
+				<canvas id="connections"></canvas>
+				<canvas id="wiring"></canvas>
+			</div>
 		</div>
 		
 		<div id="login_dialog">

@@ -42,6 +42,22 @@ Yana.prototype = {
 		
 		this.users = {};
 		
+		var connectionsCanvas = document.getElementById('connections');
+		var wiringCanvas = document.getElementById('wiring');
+		
+		var setCanvasSize = function() {
+			wiringCanvas.width = 2000;
+			wiringCanvas.height = 2000;
+			connectionsCanvas.width = 2000;
+			connectionsCanvas.height = 2000;
+		};
+		setCanvasSize();
+		
+		this.connectionsCtx = connectionsCanvas.getContext('2d');
+		this.wiringCtx = wiringCanvas.getContext('2d');
+		
+		
+		
 		// set up the AudioContext
 		window.AudioContext = window.webkitAudioContext;
 		this.audioContext = new AudioContext();
@@ -52,6 +68,7 @@ Yana.prototype = {
 		for(key in Yana._commands) {
 			Yana._commands[key].setup();
 		}
+
 	},
 	
 	getUser: function() {
@@ -93,10 +110,16 @@ Yana.prototype = {
 
 var User = function(username) {
 	this.username = username;
-	this.element = $('<div class="userspace"><div class="username">' + username + '</div></div>').appendTo("#space");
-	this.element.css("border-color", "#"+Math.floor(Math.random()*16777215).toString(16));
+	this.element = $(
+		'<div class="userspace"><div class="handle"><span class="username">' + username + '</span></div>' +
+		'<div class="output input"></div>' +
+		'</div>'
+	).appendTo("#space");
+	this.color = "#"+Math.floor(Math.random()*16777215).toString(16);
+	this.element.css("border-color", this.color);
+	this.element.find(".handle").css("background-color", this.color);
 	$("body").trigger("yana.user.created", this);
-	this.element.draggable();
+	this.element.draggable({handle: ".handle"});
 } 
 
 User.prototype = {
