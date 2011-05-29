@@ -62,8 +62,8 @@ _extend(AddPatchCommand, Command, {
 			.appendTo(userEl)
 			.css({ left: this.params.x, top: this.params.y });
 		patch.registerEvents();
-		if(this.user==yana.username)
-			patch.getElement().draggable({containment: userEl, handle: ".handle"});
+		//if(this.user==yana.username)
+		//	patch.getElement().draggable({containment: userEl, handle: ".handle"});
 		$("body").trigger("yana.patch.added", patch);
 	}
 	
@@ -81,6 +81,7 @@ MovePatchCommand.setup = function() {
 	
 	$("body").bind("yana.patch.added", function(ev, patch) {
 		patch.getElement().draggable({
+			handle: ".handle",
 			stop: function() {
 				var command = new MovePatchCommand({
 					x: $(this).css("left"),
@@ -102,7 +103,8 @@ _extend(MovePatchCommand, Command, {
 	execute: function(externalCommand) {
 		
 		if(externalCommand) {
-			
+			var element = yana.activePatches[this.params.id].getElement();
+			element.css({ left: this.params.x, top: this.params.y});
 		}
 		
 	}

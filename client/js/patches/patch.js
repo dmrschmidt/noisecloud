@@ -6,6 +6,7 @@ var Patch = function(id) {
 		'<div class="handle"></div><div class="output" data-id="' + this.id +'">' +
 		'</div><div class="controls" style="display:none;"><img class="close" src="/img/close.png"></div></div></div>'
 	);
+	this.connectedNodes = new Array();
 	this.init();
 };
 
@@ -13,16 +14,19 @@ Patch.prototype = {
 	
 	bufferSize: 1024,
 	node: null,
+	connectedNodes: null,
 	
 	init: function() {
 		this.node = yana.audioContext.createJavaScriptNode(this.bufferSize, 1, 1);
 		this.node.onaudioprocess = $.proxy(this.processAudio, this);
+		
 		// temporary for playing
 		// this.connect(yana.audioContext.destination);
 	},
 	
 	connect: function(nodeOrDestination) {
 		this.node.connect(nodeOrDestination.node);
+		nodeOrDestination.connectedNodes.push(this);
 	},
 	
 	processAudio: function(e) {
