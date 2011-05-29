@@ -83,7 +83,12 @@ Yana.prototype = {
 	join: function(username) {
 		this.username = username;
 		this.execute(new UserJoinCommand({username: username}));
+		this.users[this.username].element
+			.addClass("ownspace")
+			.find(".mask").remove();
 		$("body").trigger("yana.joined");
+		// send our output to sound card
+		this.users[this.username].outputPatch.toggleOn();
 	},
 	
 	execute: function(command) {
@@ -111,24 +116,16 @@ var User = function(username) {
 	this.username = username;
 	this.element = $(
 		'<div class="userspace"><div class="handle"><span class="username">' + username + '</span></div>' +
-		'<div class="output" data-id="' + this.username + '_out"></div>' +
-		'</div>'
+		'<div class="output input" data-id="' + this.username + '_out"></div>' +
+		'<div class="mask"></div></div>'
 	).appendTo("#space");
 	this.color = "#"+Math.floor(Math.random()*16777215).toString(16);
 	this.element.css("border-color", this.color);
 	this.element.find(".handle").css("background-color", this.color);
-	if(username==yana.username) 
-		this.element.addClass("ownspace");
-	else
-		this.element.append('<div class="mask"></div>');
 	
-/*	if(username==yana.username) {
-		this.outputPatch = new OutputPatch(this.username + "_out");
-		yana.activePatches[this.username + "_out"] = this.outputPatch;
-	} else {
-		this.outputPatch = new MergePatch(this.username + "_out");
-		yana.activePatches[this.username + "_out"] = this.outputPatch;
-	}*/
+	this.outputPatch = new OutputPatch(this.username + "_out");
+	this.outputPatch.element = this.element.find("output");
+	yana.activePatches[this.username + "_out"] = this.outputPatch;
 	
 	$("body").trigger("yana.user.created", this);
 	this.element.draggable({handle: ".handle"});

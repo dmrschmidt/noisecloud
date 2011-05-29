@@ -7,8 +7,15 @@ _extend(OutputPatch, Patch, {
 	title: "Output",
 	
 	init: function() {
-		this.node = yana.audioContext.destination;
+		this.node = yana.audioContext.createGainNode();
 	},
+	
+	toggleOn: function() {
+		
+		this.node = yana.audioContext.destination;
+		for(var i=0; i<this.connectedNodes.length; i++)
+			this.connectedNodes[i].node.connect(this.node);
+	}
 	
 	
 });

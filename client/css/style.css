@@ -67,6 +67,8 @@ body {
 	position: absolute;
 	left:100%;
 	bottom:0;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
 }
 
 #dragicon {
@@ -77,6 +79,7 @@ body {
 }
 
 .userspace {
+	position: relative;
 	width: 400px;
 	height: 200px;
 	border: 2px solid;
@@ -95,6 +98,10 @@ body {
 	position: absolute;
 	right:-22px;
 	bottom:-2px;
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-top-right-radius: 5px;
 }
 
 .ownspace > .output {
@@ -108,8 +115,6 @@ body {
 	padding: 1px 2px;
 	font-weight: bold;
 	z-index: 3;
-	border-bottom-right-radius: 5px;
-	border-top-right-radius: 5px;
 }
 
 .userspace .mask {
