@@ -5,7 +5,7 @@ _extend(DrumPatch, Patch, {
 	
 	name: "drum_patch",
 	title: "Drum",
-	frequency: 1,
+	frequency: 12,
 	currentSample: 0,
 	samplingRate: 44100,
 	beats: [1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0],
@@ -19,7 +19,7 @@ _extend(DrumPatch, Patch, {
 		for (var i = 0; i < output.length; i++) {
 			this.currentSample++;
 			if(playCurrentBeat)
-				output[i] = Math.sin(this.frequency * Math.PI * (p++ / output.length)) * 10;
+				output[i] = Math.sin(this.frequency * Math.PI * (p++ / output.length));
 			else
 				output[i] = 0;
 		}
