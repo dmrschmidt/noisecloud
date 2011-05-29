@@ -61,10 +61,10 @@ Patch.prototype = {
 	
 	registerEvents: function() {
 		var self = this;
-		$('#' + this.id).dblclick(function() {
+		$('.ownspace #' + this.id).dblclick(function() {
 			$('#' + self.id).find('.controls').first().show('fast');
 		});
-		$('#' + this.id + ' .close').click(function() {
+		$('.ownspace #' + this.id + ' .close').click(function() {
 			$('#' + self.id).find('.controls').first().hide('fast');
 		});
 	}
