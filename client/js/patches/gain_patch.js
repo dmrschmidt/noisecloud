@@ -10,6 +10,10 @@ _extend(GainPatch, Patch, {
 	init: function() {
 		GainPatch.superclass.init.call(this);
 		this.node = yana.audioContext.createGainNode();
+		this.reloadStatic();
+	},
+	
+	reloadStatic: function() {
 		this.node.gain.value = this.params.gain;
 	},
 	

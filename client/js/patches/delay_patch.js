@@ -10,6 +10,10 @@ _extend(DelayPatch, Patch, {
 	init: function() {
 		DelayPatch.superclass.init.call(this);
 		this.node = yana.audioContext.createDelayNode();
+		this.reloadStatic();
+	},
+	
+	reloadStatic: function() {
 		this.node.delayTime.value = this.params.delayTime;
 	},
 	

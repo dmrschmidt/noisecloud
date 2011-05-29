@@ -39,9 +39,14 @@ Patch.prototype = {
 		return [];
 	},
 	
+	reloadStatic: function() {
+		// implement if needed in subclasses for reload of static init assigns
+	},
+	
 	updateValue: function(name, value) {
 		if(value) eval('this.params.' + name + ' = ' + value + ';');
 		$("#" + this.id + " input."+name).val(value);
+		this.reloadStatic();
 	},
 	
 	getElement: function() {

@@ -85,6 +85,10 @@ _extend(ConvolverPatch, Patch, {
 	init: function() {
 		ConvolverPatch.superclass.init.call(this);
 		this.node = yana.audioContext.createConvolver();
+		this.reloadStatic();
+	},
+	
+	reloadStatic: function() {
 		this.node.buffer = ConvolverPatch.impulseResponseList[this.params.bufferId].buffer;
 	},
 	
