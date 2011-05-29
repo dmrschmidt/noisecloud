@@ -1,5 +1,5 @@
-var AddPatchCommand = function(params) {
-	AddPatchCommand.superclass.constructor.call(this, params); 
+var AddPatchCommand = function(params, user) {
+	AddPatchCommand.superclass.constructor.call(this, params, user); 
 };
 
 AddPatchCommand.setup = function() {
