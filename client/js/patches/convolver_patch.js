@@ -56,6 +56,7 @@ ConvolverPatch._loaded = false;
 ConvolverPatch.impulseResponseLoaded = function(impulseResponse) {
 	ConvolverPatch.impulseResponseList.push(impulseResponse);
 	if(ConvolverPatch.impulseResponseList.length == ConvolverPatch.impulseResponses.length) {
+		// enable the convolver only after load in the GUI
 		ConvolverPatch._loaded = true;
 	}
 };
@@ -78,13 +79,11 @@ _extend(ConvolverPatch, Patch, {
 	
 	name: "convolver_patch",
 	title: "Convolver",
+	bufferId: 4,
 	
 	init: function() {
 		this.node = yana.audioContext.createConvolver();
-		// alert(ConvolverPatch.loaded() ? 'ja' : 'nein');
-		this.node.buffer = ConvolverPatch.impulseResponseList[5].buffer;
-		// while(!ConvolverPatch.loaded()) {}
-		// alert('loaded');
+		this.node.buffer = ConvolverPatch.impulseResponseList[this.bufferId].buffer;
 	},
 	
 });
