@@ -1,6 +1,6 @@
 var DelayPatch = function(id, params) {
-	DelayPatch.superclass.constructor.call(this, id, params);
 	this.params = {delayTime: 32.0};
+	DelayPatch.superclass.constructor.call(this, id, params);
 };
 _extend(DelayPatch, Patch, {
 	
