@@ -1,9 +1,11 @@
 var ModulatePatch = function(params) {
-	ModulatePatch.superclass.constructor.call(this, params);
-	
 	this.params = {
 		pitchRate: 1.0
 	};
+	
+	ModulatePatch.superclass.constructor.call(this, params);
+	
+	
 };
 _extend(ModulatePatch, Patch, {
 	

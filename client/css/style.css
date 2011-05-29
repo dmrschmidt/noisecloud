@@ -161,6 +161,7 @@ body {
   padding: 5px;
   background-color: silver;
   border-radius: 3px;
+  z-index: 4;
 }
 
 .patch .controls img.close {
