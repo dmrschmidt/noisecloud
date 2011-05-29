@@ -5,6 +5,7 @@ html, body {
 body {
 	background: #333333;
 	margin: 0; padding: 0;
+	font-family: Verdana;
 }
 
 #space {
@@ -66,4 +67,6 @@ body {
 	padding: 10px;
 	margin: -50px -100px;
 	top: 50%; left:50%;
+	--webkit-border-radius: 5px;
+	border-radius: 5px;
 }
