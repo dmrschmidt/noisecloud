@@ -1,4 +1,4 @@
-var Patch = function(id) {
+var Patch = function(id, params) {
 	this.id = id;
 	this.element = $(
 		'<div id="' + this.id + '" class="patch input" data-id="' + this.id +'">' +
@@ -7,6 +7,7 @@ var Patch = function(id) {
 		'</div><div class="controls" style="display:none;"><img class="close" src="/img/close.png"></div></div></div>'
 	);
 	this.connectedNodes = new Array();
+	if(params) this.params = params;
 	this.init();
 };
 
@@ -40,7 +41,7 @@ Patch.prototype = {
 	
 	updateValue: function(name) {
 		var value_user = $('#'+this.id+' input.'+name).val();
-		if(value_user) eval('this.' + name + ' = ' + value_user + ';'); 
+		if(value_user) eval('this.params.' + name + ' = ' + value_user + ';'); 
 	},
 	
 	getElement: function() {
@@ -53,7 +54,7 @@ Patch.prototype = {
 		controls = '';
 		for(field in this.editableFields()) {
 			var name = this.editableFields()[field];
-			controls += '<input type="text" value="'+JSON.stringify(eval('this.'+name))+'" class="'+name+'" /> ' + name + '<br/>'
+			controls += '<input type="text" value="'+JSON.stringify(eval('this.params.'+name))+'" class="'+name+'" /> ' + name + '<br/>'
 		}
 		this.element.find('.controls').first().append(controls);
 	},

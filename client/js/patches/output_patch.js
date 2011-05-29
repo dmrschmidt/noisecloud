@@ -1,5 +1,5 @@
-var OutputPatch = function(params) {
-	OutputPatch.superclass.constructor.call(this, params);
+var OutputPatch = function(id, params) {
+	OutputPatch.superclass.constructor.call(this, id, params);
 };
 _extend(OutputPatch, Patch, {
 	

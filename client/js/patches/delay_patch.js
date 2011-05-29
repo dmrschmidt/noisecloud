@@ -1,16 +1,16 @@
-var DelayPatch = function(params) {
-	DelayPatch.superclass.constructor.call(this, params);
+var DelayPatch = function(id, params) {
+	DelayPatch.superclass.constructor.call(this, id, params);
 };
 _extend(DelayPatch, Patch, {
 	
 	name: "delay_patch",
 	title: "Delay",
-	delayTime: 32.0,
+	params: {delayTime: 32.0},
 	
 	init: function() {
 		DelayPatch.superclass.init.call(this);
 		this.node = yana.audioContext.createDelayNode();
-		this.node.delayTime.value = this.delayTime;
+		this.node.delayTime.value = this.params.delayTime;
 	},
 	
 	editableFields: function() {

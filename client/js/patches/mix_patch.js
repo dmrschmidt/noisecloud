@@ -1,5 +1,5 @@
-var MixPatch = function(params) {
-	MixPatch.superclass.constructor.call(this, params);
+var MixPatch = function(id, params) {
+	MixPatch.superclass.constructor.call(this, id, params);
 };
 _extend(MixPatch, Patch, {
 	
