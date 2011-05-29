@@ -11,7 +11,6 @@ _extend(GainPatch, Patch, {
 		GainPatch.superclass.init.call(this);
 		this.node = yana.audioContext.createGainNode();
 		this.node.gain.value = this.gain;
-		// this.editableFields = ['gain'];
 	},
 	
 	editableFields: function() {
