@@ -5,7 +5,7 @@ _extend(SinePatch, Patch, {
 	
 	name: "sine_patch",
 	title: "Sine",
-	frequency: 128,
+	frequency: 20,
 	
 	processAudio: function(e) {
 		var p = 0;

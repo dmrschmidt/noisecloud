@@ -6,6 +6,7 @@ UserJoinCommand.setup = function() {
 	$("#login_form").submit(function(e) {
 		e.preventDefault();
 	});
+	$("#login_form input").focus();
 	// enter user name
 	$("#login_user").keyup(function() {
 		if($(this).val().length>0)
