@@ -15,12 +15,7 @@ _extend(DelayPatch, Patch, {
 	
 	reloadStatic: function() {
 		this.node.delayTime.value = this.params.delayTime;
-	},
-	
-	editableFields: function() {
-		// implement in subclasses
-		return ['delayTime'];
-	},
+	}
 	
 	
 });

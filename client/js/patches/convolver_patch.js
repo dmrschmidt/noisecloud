@@ -90,11 +90,6 @@ _extend(ConvolverPatch, Patch, {
 	
 	reloadStatic: function() {
 		this.node.buffer = ConvolverPatch.impulseResponseList[this.params.bufferId].buffer;
-	},
-	
-	editableFields: function() {
-		// implement in subclasses
-		return ['bufferId'];
-	},
+	}
 	
 });

@@ -1,9 +1,9 @@
 var RhythmPatch = function(id, params) {
-	RhythmPatch.superclass.constructor.call(this, id, params);
 	this.params = {
 		frequency: 12,
 		beats: [1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0],
 	};
+	RhythmPatch.superclass.constructor.call(this, id, params);
 };
 _extend(RhythmPatch, Patch, {
 	
@@ -24,12 +24,7 @@ _extend(RhythmPatch, Patch, {
 			else
 				output[i] = 0;
 		}
-	},
-	
-	editableFields: function() {
-		// implement in subclasses
-		return ['frequency', 'beats'];
-	},
+	}
 	
 });
 Yana.registerPatch(RhythmPatch);

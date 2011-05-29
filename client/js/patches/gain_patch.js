@@ -15,12 +15,7 @@ _extend(GainPatch, Patch, {
 	
 	reloadStatic: function() {
 		this.node.gain.value = this.params.gain;
-	},
-	
-	editableFields: function() {
-		// implement in subclasses
-		return ['gain'];
-	},
+	}
 	
 });
 Yana.registerPatch(GainPatch);
