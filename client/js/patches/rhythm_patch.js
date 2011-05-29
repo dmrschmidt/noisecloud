@@ -1,10 +1,10 @@
-var DrumPatch = function(params) {
-	DrumPatch.superclass.constructor.call(this, params);
+var RhythmPatch = function(params) {
+	RhythmPatch.superclass.constructor.call(this, params);
 };
-_extend(DrumPatch, Patch, {
+_extend(RhythmPatch, Patch, {
 	
-	name: "drum_patch",
-	title: "Drum",
+	name: "rhythm_patch",
+	title: "Rhythm",
 	frequency: 12,
 	currentSample: 0,
 	beats: [1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0],
@@ -30,4 +30,4 @@ _extend(DrumPatch, Patch, {
 	},
 	
 });
-Yana.registerPatch(DrumPatch);
+Yana.registerPatch(RhythmPatch);

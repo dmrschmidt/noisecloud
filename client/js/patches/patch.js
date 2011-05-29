@@ -53,7 +53,7 @@ Patch.prototype = {
 		controls = '';
 		for(field in this.editableFields()) {
 			var name = this.editableFields()[field];
-			controls += '<input type="text" value="'+eval('this.'+name)+'" class="'+name+'" /> ' + name + '<br/>'
+			controls += '<input type="text" value="'+JSON.stringify(eval('this.'+name))+'" class="'+name+'" /> ' + name + '<br/>'
 		}
 		this.element.find('.controls').first().append(controls);
 	},
