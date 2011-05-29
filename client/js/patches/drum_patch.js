@@ -24,5 +24,10 @@ _extend(DrumPatch, Patch, {
 		}
 	},
 	
+	editableFields: function() {
+		// implement in subclasses
+		return ['frequency', 'beats'];
+	},
+	
 });
 Yana.registerPatch(DrumPatch);

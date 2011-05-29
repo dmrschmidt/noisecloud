@@ -83,8 +83,14 @@ _extend(ConvolverPatch, Patch, {
 	bufferId: 4,
 	
 	init: function() {
+		ConvolverPatch.superclass.init.call(this);
 		this.node = yana.audioContext.createConvolver();
 		this.node.buffer = ConvolverPatch.impulseResponseList[this.bufferId].buffer;
+	},
+	
+	editableFields: function() {
+		// implement in subclasses
+		return ['bufferId'];
 	},
 	
 });

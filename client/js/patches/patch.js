@@ -1,9 +1,10 @@
 var Patch = function(id) {
 	this.id = id;
 	this.element = $(
-		'<div class="patch input" data-id="' + this.id +'">' + 
+		'<div id="' + this.id + '" class="patch input" data-id="' + this.id +'">' +
 		'<div class="caption">' + this.title +'</div>' +
-		'<div class="handle"></div><div class="output" data-id="' + this.id +'"></div></div>'
+		'<div class="handle"></div><div class="output" data-id="' + this.id +'">' +
+		'</div><div class="controls" style="display:none;"><img class="close" src="/img/close.png"></div></div></div>'
 	);
 	this.connectedNodes = new Array();
 	this.init();
@@ -32,22 +33,34 @@ Patch.prototype = {
 		// implement in subclasses
 	},
 	
+	editableFields: function() {
+		// implement in subclasses
+		return [];
+	},
+	
 	getElement: function() {
+		if(this.editableFields().length > 0 && this.element.find('.controls').text().length == 0)
+			this.addControls();
 		return this.element;
+	},
+	
+	addControls: function() {
+		controls = '';
+		for(field in this.editableFields()) {
+			var name = this.editableFields()[field];
+			controls += '<input type="text" value="'+eval('this.'+name)+'" /> ' + name + '<br/>'
+		}
+		this.element.find('.controls').first().append(controls);
+	},
+	
+	registerEvents: function() {
+		var self = this;
+		$('#' + this.id).dblclick(function() {
+			$('#' + self.id).find('.controls').first().show('fast');
+		});
+		$('#' + this.id + ' .close').click(function() {
+			$('#' + self.id).find('.controls').first().hide('fast');
+		});
 	}
 	
 }
-
-var SamplePatch = function(id) {
-	SamplePatch.superclass.constructor.call(this, id); 
-};
-_extend(SamplePatch, Patch, {
-	
-	name: "sample_patch",
-	title: "Sample",
-	
-	processAudio: function(e) {
-		// put concrete audio implementation here
-	}
-});
-Yana.registerPatch(SamplePatch);

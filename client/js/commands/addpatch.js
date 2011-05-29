@@ -61,8 +61,9 @@ _extend(AddPatchCommand, Command, {
 		patch.getElement()
 			.appendTo(userEl)
 			.css({ left: this.params.x, top: this.params.y });
-		/*if(this.user==yana.username)
-			patch.getElement().draggable({containment: userEl, handle: ".handle"});*/
+		patch.registerEvents();
+		//if(this.user==yana.username)
+		//	patch.getElement().draggable({containment: userEl, handle: ".handle"});
 		$("body").trigger("yana.patch.added", patch);
 	}
 	
