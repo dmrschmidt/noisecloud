@@ -19,9 +19,7 @@ Patch.prototype = {
 	},
 	
 	connect: function(nodeOrDestination) {
-		if(nodeOrDestination instanceof Patch)
-			nodeOrDestination = nodeOrDestination.node;
-		this.node.connect(nodeOrDestination);
+		this.node.connect(nodeOrDestination.node);
 	},
 	
 	processAudio: function(e) {
