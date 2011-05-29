@@ -5,7 +5,7 @@ _extend(DelayPatch, Patch, {
 	
 	name: "delay_patch",
 	title: "Delay",
-	delayTime: 1.0,
+	delayTime: 32.0,
 	
 	init: function() {
 		this.node = yana.audioContext.createDelayNode();
