@@ -81,6 +81,8 @@ body {
 	border: 2px solid;
 	margin: 40px;
 	padding: 10px 20px;
+	--webkit-border-radius: 5px;
+	border-radius: 5px;
 }
 
 .userspace .handle {
