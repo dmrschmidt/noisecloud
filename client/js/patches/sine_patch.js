@@ -1,17 +1,17 @@
-var SinePatch = function(params) {
-	SinePatch.superclass.constructor.call(this, params);
+var SinePatch = function(id, params) {
+	SinePatch.superclass.constructor.call(this, id, params);
+	this.params = {frequency: 20};
 };
 _extend(SinePatch, Patch, {
 	
 	name: "sine_patch",
 	title: "Sine",
-	frequency: 128,
 	
 	processAudio: function(e) {
 		var p = 0;
 		var output = e.outputBuffer.getChannelData(0);
 		for (var i = 0; i < output.length; i++) {
-				output[i] = Math.sin(this.frequency * Math.PI * (p++ / output.length));
+				output[i] = Math.sin(this.params.frequency * Math.PI * (p++ / output.length));
 		}
 	},
 	

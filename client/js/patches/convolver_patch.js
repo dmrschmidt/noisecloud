@@ -38,8 +38,9 @@ ImpulseResponse.prototype.load = function(preset) {
 	request.send();
 }
 
-var ConvolverPatch = function(params) {
-	ConvolverPatch.superclass.constructor.call(this, params);
+var ConvolverPatch = function(id, params) {
+	ConvolverPatch.superclass.constructor.call(this, id, params);
+	this.params = {bufferId: 4};
 };
 
 ConvolverPatch.impulseResponses = [
@@ -80,12 +81,11 @@ _extend(ConvolverPatch, Patch, {
 	
 	name: "convolver_patch",
 	title: "Convolver",
-	bufferId: 4,
 	
 	init: function() {
 		ConvolverPatch.superclass.init.call(this);
 		this.node = yana.audioContext.createConvolver();
-		this.node.buffer = ConvolverPatch.impulseResponseList[this.bufferId].buffer;
+		this.node.buffer = ConvolverPatch.impulseResponseList[this.params.bufferId].buffer;
 	},
 	
 	editableFields: function() {

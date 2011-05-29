@@ -39,9 +39,9 @@ Patch.prototype = {
 		return [];
 	},
 	
-	updateValue: function(name) {
-		var value_user = $('#'+this.id+' input.'+name).val();
-		if(value_user) eval('this.' + name + ' = ' + value_user + ';'); 
+	updateValue: function(name, value) {
+		if(value) eval('this.params.' + name + ' = ' + value + ';');
+		$("#" + this.id + " input."+name).val(value);
 	},
 	
 	getElement: function() {
@@ -54,7 +54,7 @@ Patch.prototype = {
 		controls = '';
 		for(field in this.editableFields()) {
 			var name = this.editableFields()[field];
-			controls += '<input type="text" value="'+eval('this.'+name)+'" class="'+name+'" /> ' + name + '<br/>'
+			controls += '<input type="text" value="'+JSON.stringify(eval('this.params.'+name))+'" class="'+name+'" /> ' + name + '<br/>'
 		}
 		this.element.find('.controls').first().append(controls);
 	},
@@ -66,9 +66,6 @@ Patch.prototype = {
 		});
 		$('#' + this.id + ' .close').click(function() {
 			$('#' + self.id).find('.controls').first().hide('fast');
-		});
-		$('#' + this.id + ' input').blur(function() {
-			self.updateValue($(this).attr('class'));
 		});
 	}
 	

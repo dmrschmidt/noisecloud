@@ -1,14 +1,11 @@
 var GainPatch = function(id, params) {
 	GainPatch.superclass.constructor.call(this, id, params);
+	this.params = {gain: 10};
 };
 _extend(GainPatch, Patch, {
 	
 	name: "gain_patch",
 	title: "Gain",
-	
-	params: {
-		gain: 10
-	},
 	
 	init: function() {
 		GainPatch.superclass.init.call(this);
