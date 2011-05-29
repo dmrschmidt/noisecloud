@@ -1,8 +1,11 @@
-var UserJoinCommand = function(params) {
-	UserJoinCommand.superclass.constructor.call(this, params); 
+var UserJoinCommand = function(params, user) {
+	UserJoinCommand.superclass.constructor.call(this, params, user); 
 	
 };
 UserJoinCommand.setup = function() {
+	$("#login_form").submit(function(e) {
+		e.preventDefault();
+	});
 	// enter user name
 	$("#login_user").keyup(function() {
 		if($(this).val().length>0)

@@ -99,7 +99,7 @@ Yana.prototype = {
 	processMessage: function(jsonObject) {
 		if(jsonObject.type==="command") {
 			var commandClass = Yana._commands[jsonObject.name];
-			var command = new commandClass(jsonObject.user, jsonObject.params);
+			var command = new commandClass(jsonObject.params, jsonObject.user);
 			command.execute(true);
 		}
 	}

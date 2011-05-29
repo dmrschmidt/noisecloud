@@ -22,6 +22,7 @@
 		<script type="text/javascript" src="/js/patches/gain_patch.js"></script>
 		<script type="text/javascript" src="/js/patches/convolver_patch.js"></script>
 		<script type="text/javascript" src="/js/patches/delay_patch.js"></script>
+		<script type="text/javascript" src="/js/patches/output_patch.js"></script>
 		
 		<link rel="stylesheet" type="text/css" href="/css/style.css" />
 		
@@ -39,11 +40,11 @@
 		
 		<div id="login_dialog">
 			<div class="mask"></div>
-			<div class="content">
-		  		<h3>My name is</h3>
-		  		<p><input type="text" name="user" id="login_user" /></p>
-				<p><input type="submit" id="login_submit" disabled /></p>
-			</div>
+			<form class="content" id="login_form">
+				<h3>My name is</h3>
+				<input type="text" name="user" id="login_user" />
+				<input type="submit" id="login_submit" disabled="disabled" />
+			</form>
 		</div>
 		
 	</body>
