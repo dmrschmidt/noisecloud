@@ -67,6 +67,14 @@ Patch.prototype = {
 		$('.ownspace #' + this.id + ' .close').click(function() {
 			$('#' + self.id).find('.controls').first().hide('fast');
 		});
-	}
+	},
+	
+	editableFields: function() {
+		// implement in subclasses
+		var fields = new Array();
+		for(key in this.params)
+			fields.push(key);
+		return fields;
+	},
 	
 }

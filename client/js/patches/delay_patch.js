@@ -11,12 +11,7 @@ _extend(DelayPatch, Patch, {
 		DelayPatch.superclass.init.call(this);
 		this.node = yana.audioContext.createDelayNode();
 		this.node.delayTime.value = this.params.delayTime;
-	},
-	
-	editableFields: function() {
-		// implement in subclasses
-		return ['delayTime'];
-	},
+	}
 	
 	
 });
