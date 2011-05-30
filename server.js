@@ -12,6 +12,7 @@ server = http.createServer(function(req, res){
 		var contentType = 'text/html';
 		if(path.indexOf(".js")==path.length-3) contentType = "application/javascript";
 		if(path.indexOf(".css")==path.length-4) contentType = "text/css";
+		if(path.indexOf(".png")==path.length-4) contentType = "image/png";
 		res.writeHead(200, {'Content-Type': contentType});
 		res.write(data, 'utf8');
 		res.end();
