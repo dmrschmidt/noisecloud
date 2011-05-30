@@ -1,6 +1,7 @@
 What is NoiseCloud?
 ===================
-NoiseCloud was initially created for the Music Hack Day 2011 in Berlin.
+NoiseCloud was initially created for the Music Hack Day 2011 in Berlin
+(check it out at http://wiki.musichackday.org/index.php?title=NoiseCloud).
 With NoiseCloud you can collaboratively work on a art-noise installation on
 the web. Create basic sound patches, plug them together, build on top of
 other people's build while they're still working on it and see what other
